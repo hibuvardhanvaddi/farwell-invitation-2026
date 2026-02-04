@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Farewell Invite | 2026</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        body {
+            background: #1a1a2e;
+            font-family: 'Poppins', sans-serif;
+            padding: 40px 0;
+        }
+
+        /* Invitation Card Styling */
+        #printableInvite {
+            background: white;
+            color: #333;
+            border-radius: 30px;
+            overflow: hidden;
+            max-width: 900px;
+            margin: auto;
+            border: 5px solid #DD2476;
+        }
+
+        .sidebar-accent {
+            background: linear-gradient(180deg, #FF512F 0%, #DD2476 100%);
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photo-frame {
+            width: 150px;
+            height: 150px;
+            border: 5px solid white;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto;
+            background: #eee;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .qr-container {
+            background: white;
+            padding: 5px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .event-dot {
+            height: 10px;
+            width: 10px;
+            background: #DD2476;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .btn-download {
+            background: #DD2476;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-download:hover {
+            background: #FF512F;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Hide buttons during print */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            #printableInvite {
+                border: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container animate__animated animate__fadeInUp">
+        <div id="printableInvite" class="row g-0 shadow-lg">
+            <div class="col-md-5 sidebar-accent text-center">
+                <h2 class="fw-bold">OFFICIAL PASS</h2>
+                <p class="small">Scan for Entry Verification</p>
+
+                <div class="qr-container shadow">
+                    <div id="qrcode"></div>
+                </div>
+
+                <div class="mt-4 p-3 bg-light rounded border italic">
+                    <p class="mb-0 text-muted"><em>" <span id="displayMessage">Best of luck for the future!</span>
+                            "</em></p>
+                </div>
+
+                <h3 class="mt-4 fw-light">Class of 2026</h3>
+                <p class="mt-2">07 • 02 • 2026</p>
+            </div>
+
+            <div class="col-md-7 p-5">
+                <h1 class="display-6 fw-bold mb-0">Hi, <span id="displayName" style="color: #DD2476;">Senior</span>!
+                </h1>
+                <p class="text-muted mb-4">You're officially registered for the Farewell.Welcome senior</p>
+
+                <div class="schedule-list">
+                    <p><span class="event-dot"></span> <strong>08:30 AM:</strong> Please Reach the Venue At 8:30Am </p>
+                    <p><span class="event-dot"></span> <strong>10:30 PM:</strong> Speechs,Gifts & Dances</p>
+                    <p><span class="event-dot"></span> <strong>01:00 PM:</strong> Lunch & Dance</p>
+                </div>
+
+                <div class="mt-4 p-3 bg-light rounded border">
+                    <strong>Venue:</strong> Vaagdevi Institute of Technology And Science,Peddisettipale,Produttur.<br>
+                    <strong>Dress Code:</strong> Elegant Formal
+                </div>
+
+                <div class="mt-4 no-print text-center">
+                    <button onclick="window.print()" class="btn btn-download">
+                        Download / Print Invitation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <script>
+        // 1. Load Data from LocalStorage
+        const name = localStorage.getItem('visitorName') || "Senior";
+
+        document.getElementById('displayName').innerText = name;
+
+        // 2. New QR Code Generation (No Google API needed)
+        new QRCode(document.getElementById("qrcode"), {
+            text: `Farewell2026_Entry_${name}`,
+            width: 128,
+            height: 128,
+            colorDark: "#DD2476", // Matching your theme!
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        // 3. Celebrate!
+        // Trigger Confetti
+        confetti({
+            particleCount: 350,
+            spread: 100,
+            origin: { y: 0.6 },
+            colors: ['#FF512F', '#DD2476', '#ffffff']
+        });
+    </script>
+
+</body>
+
+</html>

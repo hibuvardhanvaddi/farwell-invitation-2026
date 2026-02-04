@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farewell 2026 | Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        body { background: #0f0c29; color: white; font-family: 'Poppins', sans-serif; overflow-x: hidden; overflow-y: hidden;}
+        .hero { 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(15, 12, 41, 1)), 
+                        url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover; padding: 50px 0;
+        }
+        .countdown-box { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; display: inline-block; min-width: 80px; margin: 5px; border: 1px solid rgba(255,255,255,0.2); }
+        .card { background: rgba(255, 255, 255, 0.95); color: #333; border-radius: 20px; border: none; }
+        .btn-grad { background: linear-gradient(to right, #FF512F 0%, #DD2476 51%, #FF512F 100%); transition: 0.5s; background-size: 200% auto; color: white; border: none; }
+        .btn-grad:hover { background-position: right center; color: #fff; }
+    </style>
+</head>
+<body>
+
+<div class="hero text-center animate__animated animate__fadeIn">
+    <div class="container">
+        <h1 class="display-3 fw-bold animate__animated animate__backInDown">The Grand Finale 2026</h1>
+        <p class="fs-4 mb-5">Counting down to your final farewell walk...</p>
+        
+        <div id="countdown" class="animate__animated animate__zoomIn">
+            <div class="countdown-box"><div id="days" class="fs-2 fw-bold">00</div><small>Days</small></div>
+            <div class="countdown-box"><div id="hours" class="fs-2 fw-bold">00</div><small>Hrs</small></div>
+            <div class="countdown-box"><div id="mins" class="fs-2 fw-bold">00</div><small>Mins</small></div>
+            <div class="countdown-box"><div id="secs" class="fs-2 fw-bold">00</div><small>Secs</small></div>
+        </div>
+    </div>
+</div>
+
+<div class="container pb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card p-4 animate__animated animate__fadeInUp shadow-lg">
+                <h3 class="text-center mb-4 fw-bold">Claim Your Spot</h3>
+                <form id="regForm">
+                    <div class="mb-3">
+                        <input type="text" id="seniorName" class="form-control form-control-lg" placeholder="Full Name" required>
+                    </div>
+                    <button type="submit" class="btn btn-grad w-100 py-3 fs-5 rounded-pill">Register Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Countdown Logic
+    const eventDate = new Date("Feb 7, 2026 17:00:00").getTime();
+    const timer = setInterval(function() {
+        const now = new Date().getTime();
+        const diff = eventDate - now;
+        
+        document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+    }, 1000);
+
+    document.getElementById('regForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        localStorage.setItem('visitorName', document.getElementById('seniorName').value);
+        window.location.href = 'invite.html';
+    });
+</script>
+</body>
+</html>
